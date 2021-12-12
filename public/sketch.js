@@ -339,21 +339,23 @@ function draw() {
 }
 
 function mousePressed() {
-  myDecorations.push(new newDecoration(mouseX, mouseY, SuperArray[1]));
+  if (dist(mouseX, mouseY, width / 2, height / 2) <= 0.8 * r) {
+    myDecorations.push(new newDecoration(mouseX, mouseY, SuperArray[1]));
 
-  /*fill(myColor);
+    /*fill(myColor);
   circle(mouseX, mouseY, 10);*/
 
-  //quando muovo il mouse creo automaticamente un messaggio contenente queste info al server
-  let message = {
-    id: clientSocket.id,
-    x: mouseX,
-    y: mouseY,
-  };
+    //quando muovo il mouse creo automaticamente un messaggio contenente queste info al server
+    let message = {
+      id: clientSocket.id,
+      x: mouseX,
+      y: mouseY,
+    };
 
-  //e poi lo mando: mouse è l'oggetto della mail, message il corpo.
-  clientSocket.emit("mouse", message);
-  console.log(message.id);
+    //e poi lo mando: mouse è l'oggetto della mail, message il corpo.
+    clientSocket.emit("mouse", message);
+    console.log(message.id);
+  }
 }
 
 function star(x, y, radius1, radius2, npoints) {
