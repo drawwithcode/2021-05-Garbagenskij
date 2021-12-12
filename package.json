@@ -1,0 +1,23 @@
+{
+  "name": "2021-05-garbagenskij",
+  "version": "1.0.0",
+  "description": "my assignement",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drawwithcode/2021-05-Garbagenskij.git"
+  },
+  "author": "Greta Cozza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drawwithcode/2021-05-Garbagenskij/issues"
+  },
+  "homepage": "https://github.com/drawwithcode/2021-05-Garbagenskij#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
