@@ -17,6 +17,7 @@ io.on("connection", newConnection);
 
 // creaet the object that will handle users colors
 let userColors = {};
+let userIdentifiers = {};
 
 //RICEVO
 // per il momento: la funzione newConnection console.logga  newsocket
@@ -25,15 +26,21 @@ function newConnection(newSocket) {
 
   // generate a random hex code
   let newColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  //let newIdentifier = Math.parseInt(Math.random());
   // add the color to the userColor object
   // we will add a property named as the id of the client
   // and give as value the new color
   userColors[newSocket.id] = newColor;
+  userIdentifiers[newSocket.id] = newIdentifier;
 
   // send the color code (are "to" the same as "in" as written on https://socket.io/docs/v4/rooms/??)
-  io.to(newSocket.id).emit("welcome", newColor);
+  io.to(newSocket.id).emit("welcome", newColor, newIdentifier);
   // tell to all the others that a new user connectd
-  newSocket.broadcast.emit("newUser", { id: newSocket.id, color: newColor });
+  newSocket.broadcast.emit("newUser", {
+    id: newSocket.id,
+    color: newColor,
+    identifier: newIdentifier,
+  });
 
   //ora aggiungo il messaggio "mouse"
   //quando ricevo la mail con oggetto "mouse", eseguo la funzione Mouse Message
@@ -44,9 +51,12 @@ function newConnection(newSocket) {
   //la funzione mouseMessage cosa fa? ...
   function mouseMessage(dataReceived) {
     //...prende i dati ricevuti e li console.logga...
-    console.log(dataReceived);
+    console.log("1", dataReceived);
     // add to the data the colour
     dataReceived.color = userColors[dataReceived.id];
+    dataReceived.identifier = userIdentifiers[dataReceived.id];
+
+    console.log("2", dataReceived);
     //MANDO
     //... e poi manda il messaggio con oggetto Mousebroadcast, e corpo dataReceived
     newSocket.broadcast.emit("mouseBroadcast", dataReceived);
