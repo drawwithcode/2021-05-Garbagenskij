@@ -133,14 +133,6 @@ function mouseBroadcastFunction(dataReceived) {
     )
   );
 }
-// ------------------------MI FEERMO QUI---------------------
-
-// when a new user connects, print a welcome text
-// in adavnced sketch: newdata is called data instead
-// function newUserFunction(data) {
-//   fill(data.color);
-//   text("New user: " + data.id, width / 2, height / 2);
-// }
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
@@ -169,13 +161,8 @@ function draw() {
   background(SuperArray[0]);
   //mostro la torta
   imageMode(CENTER);
-  //if (width > height) {
   cake.resize(height * ratio, 0);
   r = height * bigratio;
-  //} else {
-  //  cake.resize(width * ratio, 0);
-  //  r = width * bigratio;
-  // }
   image(cake, width / 2, height / 2);
 
   //testo rotante
